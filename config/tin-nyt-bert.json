@@ -1,0 +1,110 @@
+{
+  "data": {
+    "dataset": "nyt",
+    "data_dir": "YOUR_DATA_DIR",
+    "train_file": "nyt_train.json",
+    "val_file": "nyt_val.json",
+    "test_file": "nyt_test.json",
+    "prob_json": "nyt_prob.json",
+    "hierarchy": "nyt.taxonomy"
+  },
+  "vocabulary": {
+    "dir": "vocab",
+    "vocab_dict": "word.dict",
+    "max_token_vocab": 60000,
+    "label_dict": "label.dict"
+  },
+  "embedding": {
+    "token": {
+      "dimension": 300,
+      "type": "pretrain",
+      "pretrained_file": "YOUR_DATA_DIR/glove.6B.300d.txt",
+      "dropout": 0.5,
+      "init_type": "kaiming_uniform"
+    },
+    "label": {
+      "dimension": 300,
+      "type": "random",
+      "dropout": 0.5,
+      "init_type": "kaiming_uniform"
+    }
+  },
+  "text_encoder": {
+    "type": "bert",
+    "bert_model_dir": "YOUR_BERT_DIR",
+    "max_length": 300,
+    "RNN": {
+      "bidirectional": true,
+      "num_layers": 1,
+      "type": "GRU",
+      "hidden_dimension": 100,
+      "dropout": 0.1
+    },
+    "CNN": {
+      "kernel_size": [2, 3, 4],
+      "num_kernel": 100
+    },
+    "topK_max_pooling": 1
+  },
+  "structure_encoder": {
+    "type": "TIN",
+    "node": {
+      "type": "text",
+      "dimension": 768,
+      "dropout": 0.05
+    }
+  },
+  "model": {
+    "type": "HiAGM-TP",
+    "linear_transformation": {
+      "text_dimension": 768,
+      "node_dimension": 768,
+      "dropout": 0.1
+    },
+    "classifier": {
+      "num_layer": 1,
+      "dropout": 0.5
+    }
+  },
+  "train": {
+    "optimizer": {
+      "type": "Adam",
+      "learning_rate": 2e-5,
+      "lr_decay": 1.0,
+      "lr_patience": 5,
+      "early_stopping": 50
+    },
+    "batch_size": 8,
+    "start_epoch": 0,
+    "end_epoch": 100,
+    "loss": {
+      "classification": "BCEWithLogitsLoss",
+      "recursive_regularization": {
+        "flag": true,
+        "penalty": 0.000001
+      }
+    },
+    "device_setting": {
+      "device": "cuda",
+      "visible_device_list": "0",
+      "num_workers": 0
+    },
+    "checkpoint": {
+      "dir": "nyt_tin_bert",
+      "max_number": 10,
+      "save_best": ["Macro_F1", "Micro_F1"]
+    }
+  },
+  "eval": {
+    "batch_size": 12,
+    "threshold": 0.5
+  },
+   "test": {
+    "best_checkpoint": "best_micro_tin_bert",
+    "batch_size": 12
+  },
+  "log": {
+    "level": "info",
+    "filename": "tin-nyt-bert.log"
+  }
+}
