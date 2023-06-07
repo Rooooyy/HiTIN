@@ -1,0 +1,5 @@
+__pycache__
+.idea
+*.sh
+!nyt.sh
+*.slurm

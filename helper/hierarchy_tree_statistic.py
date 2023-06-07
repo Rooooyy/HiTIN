@@ -140,8 +140,10 @@ class DatasetStatistic(object):
                 assert label in self.label_vocab
                 level_num_dict[self.label_trees[label]._depth] += 1
                 if label in self.init_prior_prob_dict.keys():
-                    # TODO the children of Root node, need to be changed according to different corpus
-                    if label in ["CCAT", "ECAT", "GCAT", "MCAT"] or label in ["CS", "Medical", "Civil", "ECE", "biochemistry", "MAE", "Psychology"]:
+                    # TODO: the children of Root node, need to be changed according to different corpus
+                    # if label in ["CS", "Medical", "Civil", "ECE", "biochemistry", "MAE", "Psychology"]: # RCV1
+                    # if label in ["Top/Features", "Top/Opinion", "Top/Classifieds", "Top/News"]: # NYT
+                    if label in ["CCAT", "ECAT", "GCAT", "MCAT"]:  # WOS
                         prob_dict[ROOT_LABEL][label] += 1
                         self.prior_prob_dict[ROOT_LABEL][label] += 1
                         if 'train' in file_name or 'val' in file_name:

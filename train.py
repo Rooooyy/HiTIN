@@ -88,11 +88,11 @@ def train(config, args):
         no_decay = ['bias', 'LayerNorm.weight']
         grouped_parameters = [
             {'params': [p for n, p in param if 'bert' in n and not any(nd in n for nd in no_decay)],
-             'weight_decay': args.l2_rate, 'lr': config.train.optimizer.learning_rate},
+             'weight_decay': args.l2rate, 'lr': config.train.optimizer.learning_rate},
             {'params': [p for n, p in param if 'bert' in n and any(nd in n for nd in no_decay)],
              'weight_decay': 0.0, 'lr': config.train.optimizer.learning_rate},
             {'params': [p for n, p in param if 'bert' not in n and not any(nd in n for nd in no_decay)],
-             'weight_decay': args.l2_rate, 'lr': args.learning_rate},
+             'weight_decay': args.l2rate, 'lr': args.learning_rate},
             {'params': [p for n, p in param if 'bert' not in n and any(nd in n for nd in no_decay)],
              'weight_decay': 0.0, 'lr': args.learning_rate}
         ]
