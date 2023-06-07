@@ -37,7 +37,7 @@ python data/preprocess_nyt.py
 
 ### RCV1-V2
 
-The preprocess code could refer to the [repository of reuters_loader](https://github.com/ductri/reuters_loader) and we provide a copy here. The original dataset can be acquired [here](https://trec.nist.gov/data/reuters/reuters.html) by signing an agreement. It took us 1 data to receive a response.
+The preprocessing code could refer to the [repository of reuters_loader](https://github.com/ductri/reuters_loader) and we provide a copy here. The original dataset can be acquired [here](https://trec.nist.gov/data/reuters/reuters.html) by signing an agreement. It took us 1 data to receive a response.
 
 ```shell
 python data/data_rcv1.py
@@ -48,7 +48,7 @@ python data/preprocess_rcv1.py
 In [HiAGM](https://github.com/Alibaba-NLP/HiAGM), an additional step is required to count the prior probabilities between parent and child labels by running `python helper/hiearchy_tree_statistic.py`. HiTIN only requires unweighted adjacency matrix of label hierarchies but we still retain this property and save the statistics in `data/DATASET_prob.json` as we also implement baseline methods including TextRCNN, BERT-based HiAGM. 
 
 If you tend to evaluate these methods on your own dataset, please make sure to organize your data in the following format:
-```json
+```
 {
     "doc_label": ["Computer--MachineLearning--DeepLearning", "Neuro--ComputationalNeuro"],
     "doc_token": ["I", "love", "deep", "learning"],
@@ -68,8 +68,8 @@ python helper/hierarchy_tree_statistic.py
 ## Train
 The default parameters are not the best performing-hyper-parameters used to reproduce our results in the paper. Hyper-parameters need to be specified through the commandline arguments. Please refer to our paper for the details of how we set the hyper-parameters.
 
-To learn hyper-parameters to be specified, please see: 
-```shell
+To learn hyperparameters to be specified, please see: 
+```
 python train.py [-h] -cfg CONFIG_FILE [-b BATCH_SIZE] [-lr LEARNING_RATE]
                 [-l2 L2RATE] [-p] [-k TREE_DEPTH] [-lm NUM_MLP_LAYERS]
                 [-hd HIDDEN_DIM] [-fd FINAL_DROPOUT] [-tp {root,sum,avg,max}]
