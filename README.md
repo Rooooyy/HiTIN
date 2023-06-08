@@ -1,10 +1,10 @@
 # HiTIN: Hierarchy-aware Tree Isomorphism Network for Hierarchical Text Classification
 
-Official implementation for ACL 2023 accepted paper "HiTIN: Hierarchy-aware Tree Isomorphism Network for Hierarchical Text Classification" . [[arXiv](https://arxiv.org/abs/2305.15182)][[pdf](https://arxiv.org/pdf/2305.15182.pdf)]
+Official implementation for ACL 2023 accepted paper "HiTIN: Hierarchy-aware Tree Isomorphism Network for Hierarchical Text Classification" . [[arXiv](https://arxiv.org/abs/2305.15182)][[pdf](https://arxiv.org/pdf/2305.15182.pdf)][[bilibili](https://www.bilibili.com/video/BV1vL411i7uY/?share_source=copy_web&vd_source=a9cc6ff9a8cf3c92bf2375da5b56a007)]
 
 ## Requirements
 
-**It's hard to reproduce the results without the same devices and environment.** Although our code is highly compatible with python environments, we strongly recommend that you create a new environment according to our settings.
+**It's hard to reproduce the results without the same devices and environment.** Although our code is highly compatible with mulitiple python environments, we strongly recommend that you create a new environment according to our settings.
 
 - Python == 3.7.13
 - numpy == 1.21.5
