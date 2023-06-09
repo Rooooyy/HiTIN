@@ -1,5 +1,5 @@
 __pycache__
 .idea
 *.sh
-!nyt.sh
+!data/nyt.sh
 *.slurm

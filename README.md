@@ -20,19 +20,21 @@ Please manage to acquire the original datasets and then run these scripts.
 
 ### Web Of Science (WOS)
 
-The original dataset can be acquired in the repository of [HDLTex](https://github.com/kk7nc/HDLTex). Preprocess code could refer to the repository of [HiAGM](https://github.com/Alibaba-NLP/HiAGM). Please download the release of WOS-46985(version 2), open `WebOfScience/Meta-data/Data.xls` and convert it to `.txt` format (Click "Save as" in Office Excel). Then, run:
+The original dataset can be acquired freely in the repository of [HDLTex](https://github.com/kk7nc/HDLTex). Preprocess code could refer to the repository of [HiAGM](https://github.com/Alibaba-NLP/HiAGM). Please download the release of **WOS-46985(version 2)**, open `WebOfScience/Meta-data/Data.xls` and convert it to `.txt` format (Click "Save as" in Office Excel). Then, run:
 ```shell
-python data/preprocess_wos.py
+cd data
+python preprocess_wos.py
 ```
 
 
 ### NyTimes (NYT)
 
-The original dataset can be acquired [here](https://catalog.ldc.upenn.edu/LDC2008T19).  When you have fetched the original archive,  Unzip the files and make sure that the file path matches the indices in `data/idnewnyt_xxx.json`. Here we post our bash script in `nyt.sh` , which takes hours to accomplish the preprocessing (You could manage by your own way). 
+The original dataset is available [here](https://catalog.ldc.upenn.edu/LDC2008T19) for a fee.  When you have fetched the original archive,  Unzip the files and make sure that the file path matches the indices in `data/idnewnyt_xxx.json`. Here we post our bash script in `nyt.sh` , which takes hours to accomplish the preprocessing (You could manage by your own way). 
 
 ```shell
+cd data
 bash nyt.sh
-python data/preprocess_nyt.py
+python preprocess_nyt.py
 ```
 
 ### RCV1-V2
@@ -40,8 +42,9 @@ python data/preprocess_nyt.py
 The preprocessing code could refer to the [repository of reuters_loader](https://github.com/ductri/reuters_loader) and we provide a copy here. The original dataset can be acquired [here](https://trec.nist.gov/data/reuters/reuters.html) by signing an agreement. It took us 1 data to receive a response.
 
 ```shell
-python data/data_rcv1.py
-python data/preprocess_rcv1.py
+cd data
+python data_rcv1.py
+python preprocess_rcv1.py
 ```
 
 ### Conduct experiments on your own data
