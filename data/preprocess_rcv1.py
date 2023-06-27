@@ -78,7 +78,7 @@ def df_to_dict(df):
 
         label = row['topics'].lstrip('[').rstrip(']')
         label = [l.strip().strip("'") for l in label.split(',')]
-        data.append(json.dumps({'doc_token': token, 'doc_label': label, 'doc_topic': [], 'doc_keyword': []}) + '\n')
+        data.append(json.dumps({'token': token, 'label': label, 'topic': [], 'keyword': []}) + '\n')
     return data
 
 

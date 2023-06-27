@@ -105,7 +105,7 @@ def get_data_from_meta():
         doc = [word.lower() for word in doc.split() if word not in english_stopwords and len(word) > 1]
         sample_text = doc
         total_len.append(len(sample_text))
-        data.append({'doc_token': sample_text, 'doc_label': sample_label, 'doc_topic': [], 'doc_keyword': []})
+        data.append({'token': sample_text, 'label': sample_label, 'topic': [], 'keyword': []})
     print(label_check)
     c = 0
     for i in label_check.keys():

@@ -100,7 +100,7 @@ def read_nyt(id_json):
                 continue
             text = clean_str(text)
             text = [word.lower() for word in text.split() if word not in english_stopwords]
-            sample['doc_token'] = text
+            sample['token'] = text
             sample_label = []
             tags = root.getElementsByTagName('classifier')
             for tag in tags:
@@ -117,9 +117,9 @@ def read_nyt(id_json):
                         continue
                     if label not in sample_label and label in label_vocab:
                         sample_label.append(label)
-            sample['doc_label'] = sample_label
-            sample['doc_topic'] = []
-            sample['doc_keyword'] = []
+            sample['label'] = sample_label
+            sample['topic'] = []
+            sample['keyword'] = []
             corpus.append(sample)
         except:
             print(xml_path)
