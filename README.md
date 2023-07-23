@@ -114,7 +114,9 @@ optional arguments:
                         of log files.
 ```
 
-We provide a lot of config files in `./config`. Before running, the last thing to do is modify the `YOUR_DATA_DIR`, `YOUR_BERT_DIR` in the json file.
+We provide a lot of config files in `./config`. 
+
+**Before running, the last thing to do is modify the `YOUR_DATA_DIR`, `YOUR_BERT_DIR` in the json file.**
 
 An example of training HiTIN on RCV1 with **TextRCNN** as the text encoder:
 ```shell
@@ -127,11 +129,21 @@ python train.py -cfg config/tin-wos-bert.json -k 2 -b 12 -hd 768 -lr 1e-4 -tp su
 ```
 
 ## Citation
-If you found the provided code with our paper useful in your work, please **star** this repo and cite our paper!
+If you found the provided code with our paper useful in your work, please **star** this repo and **cite** our paper!
 ```
-@inproceedings{Zhu2023HiTINHT,
-  title={HiTIN: Hierarchy-aware Tree Isomorphism Network for Hierarchical Text Classification},
-  author={He Zhu and Chong Zhang and Junjie Huang and Junran Wu and Ke Xu},
-  year={2023}
+@inproceedings{zhu-etal-2023-hitin,
+    title = "{H}i{TIN}: Hierarchy-aware Tree Isomorphism Network for Hierarchical Text Classification",
+    author = "Zhu, He  and
+      Zhang, Chong  and
+      Huang, Junjie  and
+      Wu, Junran  and
+      Xu, Ke",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-long.432",
+    pages = "7809--7821",
 }
 ```

@@ -75,7 +75,7 @@ def train(config, args):
     # print("Total num of parameters: {}. Trainable parameters: {}".format(total_params, trainable_params))
     # sys.exit()
 
-    # define training objective & optimizer
+    # Define training objective & optimizer
     criterion = ClassificationLoss(os.path.join(config.data.data_dir, config.data.hierarchy),
                                    corpus_vocab.v2i['label'],
                                    # recursive_penalty=config.train.loss.recursive_regularization.penalty,
@@ -152,7 +152,6 @@ def train(config, args):
                 best_performance[0], best_performance[1]))
 
     for epoch in range(config.train.start_epoch, config.train.end_epoch):
-        # epochs += 1
         start_time = time.time()
         trainer.train(train_loader, epoch)
         trainer.eval(train_loader, epoch, 'TRAIN')
@@ -209,18 +208,14 @@ def train(config, args):
         #     }, os.path.join(model_checkpoint, model_name + '_epoch_' + str(epoch)))
 
         logger.info('Epoch {} Time Cost {} secs.'.format(epoch, time.time() - start_time))
-        # total_time += time.time() - start_time
 
-    # print("Average training time per epoch: {} secs.".format(float(total_time) / epochs))
 
     best_epoch_model_file = os.path.join(model_checkpoint, 'best_micro_' + model_name)
     if os.path.isfile(best_epoch_model_file):
         load_checkpoint(best_epoch_model_file, model=hiagm,
                         config=config,
                         optimizer=optimizer)
-        # start_time = time.time()
         performance = trainer.eval(test_loader, best_epoch[0], 'TEST')
-        # print("Inference time A : {} secs.".format(time.time() - start_time))
         # record best micro test performance
         print("Best micro-f1 on epoch: %d, [Test] performance↓\nmicro-f1: %.4f\nmacro-f1: %.4f" \
                     % (best_epoch[0], performance['micro_f1'], performance['macro_f1']))
