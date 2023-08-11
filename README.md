@@ -53,7 +53,7 @@ In [HiAGM](https://github.com/Alibaba-NLP/HiAGM), an additional step is required
 If you tend to evaluate these methods on your own dataset, please make sure to organize your data in the following format:
 ```
 {
-    "doc_label": ["Computer--MachineLearning--DeepLearning", "Neuro--ComputationalNeuro"],
+    "doc_label": ["Computer", "MachineLearning", "DeepLearning", "Neuro", "ComputationalNeuro"],
     "doc_token": ["I", "love", "deep", "learning"],
     "doc_keyword": ["deep learning"],
     "doc_topic": ["AI", "Machine learning"]
