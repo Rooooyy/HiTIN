@@ -157,7 +157,7 @@ def get_hierarchy():
     for line in data:
         line = line.rstrip('\n')
         line = json.loads(line)
-        line = line['doc_label']
+        line = line['label']
         if line[0] in label_hierarchy:
             if line[1] not in label_hierarchy[line[0]]:
                 label_hierarchy[line[0]].append(line[1])
