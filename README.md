@@ -21,11 +21,11 @@ Please manage to acquire the original datasets and then run these scripts.
 ### Web Of Science (WOS)
 
 The original dataset can be acquired freely in the repository of [HDLTex](https://github.com/kk7nc/HDLTex). Preprocess code could refer to the repository of [HiAGM](https://github.com/Alibaba-NLP/HiAGM). Please download the release of **WOS-46985(version 2)**, open `WebOfScience/Meta-data/Data.xls` and convert it to `.txt` format (Click "Save as" in Office Excel). Then, run:
+
 ```shell
 cd data
 python preprocess_wos.py
 ```
-
 
 ### NyTimes (NYT)
 
@@ -39,7 +39,7 @@ python preprocess_nyt.py
 
 ### RCV1-V2
 
-The preprocessing code could refer to the [repository of reuters_loader](https://github.com/ductri/reuters_loader) and we provide a copy here. The original dataset can be acquired [here](https://trec.nist.gov/data/reuters/reuters.html) by signing an agreement. It took us 1 data to receive a response.
+The preprocessing code could refer to the [repository of reuters_loader](https://github.com/ductri/reuters_loader) and we provide a copy here. The original dataset can be acquired [here](https://trec.nist.gov/data/reuters/reuters.html) by signing an agreement. It took us 1 day to receive a response.
 
 ```shell
 cd data
@@ -48,9 +48,11 @@ python preprocess_rcv1.py
 ```
 
 ### Conduct experiments on your own data
+
 In [HiAGM](https://github.com/Alibaba-NLP/HiAGM), an additional step is required to count the prior probabilities between parent and child labels by running `python helper/hiearchy_tree_statistic.py`. HiTIN only requires unweighted adjacency matrix of label hierarchies but we still retain this property and save the statistics in `data/DATASET_prob.json` as we also implement baseline methods including TextRCNN, BERT-based HiAGM. 
 
 If you tend to evaluate these methods on your own dataset, please make sure to organize your data in the following format:
+
 ```
 {
     "doc_label": ["Computer", "MachineLearning", "DeepLearning", "Neuro", "ComputationalNeuro"],
@@ -61,7 +63,9 @@ If you tend to evaluate these methods on your own dataset, please make sure to o
 
 where "doc_keyword" and "doc_topic" are optional.
 ```
+
 then, replace the label name with your dataset's in line143~146 of `helper/hierarchy_tree_statistics.py` and run:
+
 ```shell
 python helper/hierarchy_tree_statistic.py
 ```
@@ -69,9 +73,11 @@ python helper/hierarchy_tree_statistic.py
 > Thanks to the superior framework open-sourced by [NeuralClassifier](https://github.com/Tencent/NeuralNLP-NeuralClassifier). You could also implement other methods in HTC or propose your own model.
 
 ## Train
-The default parameters are not the best performing-hyper-parameters used to reproduce our results in the paper. Hyper-parameters need to be specified through the commandline arguments. Please refer to our paper for the details of how we set the hyper-parameters.
+
+Hyper-parameters need to be specified through the commandline arguments. Please refer to our paper for the details of how we set the hyper-parameters.
 
 To learn hyperparameters to be specified, please see: 
+
 ```
 python train.py [-h] -cfg CONFIG_FILE [-b BATCH_SIZE] [-lr LEARNING_RATE]
                 [-l2 L2RATE] [-p] [-k TREE_DEPTH] [-lm NUM_MLP_LAYERS]
@@ -119,17 +125,21 @@ We provide a lot of config files in `./config`.
 **Before running, the last thing to do is modify the `YOUR_DATA_DIR`, `YOUR_BERT_DIR` in the json file.**
 
 An example of training HiTIN on RCV1 with **TextRCNN** as the text encoder:
+
 ```shell
 python train.py -cfg config/tin-rcv1-v2.json -k 2 -b 64 -hd 512 -lr 1e-4 -tp sum
 ```
 
 An example of training HiTIN on WOS with **BERT** as the text encoder:
+
 ```shell
 python train.py -cfg config/tin-wos-bert.json -k 2 -b 12 -hd 768 -lr 1e-4 -tp sum
 ```
 
 ## Citation
+
 If you found the provided code with our paper useful in your work, please **star** this repo and **cite** our paper!
+
 ```
 @inproceedings{zhu-etal-2023-hitin,
     title = "{H}i{TIN}: Hierarchy-aware Tree Isomorphism Network for Hierarchical Text Classification",
